@@ -39,6 +39,24 @@ var busca = function(valor){
     });
 }
 
+var busca2 = function(url, callback){
+    return new Promise(function(resolve, reject){
+        var xhr = new XMLHttpRequest();
+		xhr.open('GET', url);
+        xhr.send(null);
+		
+        xhr.onreadystatechange = function()
+		{
+            if (xhr.readyState === 4)
+			{
+				if(xhr.status === 200)
+					resolve(JSON.parse(xhr.responseText));                                              
+				else
+					reject('Erro na requisição!');
+			}				
+        }	
+    });
+}
 
 var user;
 var nInput1 = document.createElement('input');
